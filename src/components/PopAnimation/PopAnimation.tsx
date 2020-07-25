@@ -16,7 +16,8 @@ function PopAnimation({ duration }) {
     },
   }
 
-  return show ? <Lottie options={defaultOptions} height={600} width={500} /> : null
+  if (!show) return null
+  return <Lottie options={defaultOptions} height={600} width={500} />
 }
 
 export default PopAnimation
