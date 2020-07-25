@@ -3,7 +3,7 @@ import React from 'react'
 import classNames from 'classnames/bind'
 
 /* Internal dependencies */
-import TodoListContainer from 'containers/TodoListContainer'
+import PopAnimation from 'components/PopAnimation'
 import styles from './HomePage.module.scss'
 
 const cx = classNames.bind(styles)
@@ -12,7 +12,7 @@ function HomePage() {
   return (
     <div className={cx('homepage-wrapper')}>
       <div className={cx('todo-list-wrapper')}>
-        <TodoListContainer />
+        <PopAnimation duration={1.5} />
       </div>
     </div>
   )
