@@ -12,7 +12,7 @@ const cx = classNames.bind(styles)
 function HomePage() {
   return (
     <div className={cx('homepage-wrapper')}>
-      <div className={cx('todo-list-wrapper')}>
+      <div className={cx('main-wrapper')}>
         <PopAnimation duration={1.5} />
         <InvitationContainer />
       </div>
