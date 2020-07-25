@@ -2,7 +2,7 @@
 import React from 'react'
 
 /* Internal dependencies */
-import * as Styled from './InfoLabel.styled'
+import * as Styled from './Label.styled'
 
 interface InfoLabel {
   content: string
