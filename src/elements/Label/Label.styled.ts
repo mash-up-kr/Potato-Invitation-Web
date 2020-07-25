@@ -1,7 +1,7 @@
 /* External dependencies */
 import styled from 'styled-components'
 
-interface InfoLabelProps {
+interface LabelProps {
   width: number
   height: number
   fontSize: number
@@ -9,7 +9,7 @@ interface InfoLabelProps {
   backgroundColor: string
 }
 
-export const InfoLabel = styled.div<InfoLabelProps>`
+export const Label = styled.div<LabelProps>`
   width: ${props => props.width}px;
   height: ${props => props.height}px;
   font-size: ${props => props.fontSize}px;

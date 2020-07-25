@@ -4,7 +4,7 @@ import React from 'react'
 /* Internal dependencies */
 import * as Styled from './Label.styled'
 
-interface InfoLabel {
+interface Label {
   content: string
   width?: number
   height?: number
@@ -13,19 +13,12 @@ interface InfoLabel {
   backgroundColor?: string
 }
 
-function InfoLabel({
-  content,
-  width = 64,
-  height = 20,
-  fontSize = 12,
-  color = '#106225',
-  backgroundColor = '#C9EDD7',
-}: InfoLabel) {
+function Label({ content, width = 64, height = 20, fontSize = 12, color = '#106225', backgroundColor = '#C9EDD7' }: Label) {
   return (
-    <Styled.InfoLabel width={width} height={height} fontSize={fontSize} color={color} backgroundColor={backgroundColor}>
+    <Styled.Label width={width} height={height} fontSize={fontSize} color={color} backgroundColor={backgroundColor}>
       {content}
-    </Styled.InfoLabel>
+    </Styled.Label>
   )
 }
 
-export default InfoLabel
+export default Label
