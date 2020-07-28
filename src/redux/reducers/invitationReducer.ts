@@ -15,12 +15,16 @@ type State = {
   getInvitationError: boolean
 }
 
+export interface getInvitationPayload {
+  templateId: string
+}
+
 const GET_INVITATION = 'invitation/GET_INVITATION' as const
 const GET_INVITATION_FETCHING = 'invitation/GET_INVITATION_FETCHING' as const
 const GET_INVITATION_SUCCESS = 'invitation/GET_INVITATION_SUCCESS' as const
 const GET_INVITATION_ERROR = 'invitation/GET_INVITATION_ERROR' as const
 
-export const getInvitation = actionCreatorWithPromise(GET_INVITATION)
+export const getInvitation = actionCreatorWithPromise<getInvitationPayload>(GET_INVITATION)
 
 const { asyncActions: getInvitationAsyncActions, asyncSaga: getInvitationSaga } = createAsyncActionsAndSaga(
   GET_INVITATION_FETCHING,

@@ -16,4 +16,4 @@ export interface getInvitationResponseType {
   images: string[]
 }
 
-export const getInvitation: ResponseType<getInvitationResponseType> = () => axios.get('/invitations')
+export const getInvitation: ResponseType<getInvitationResponseType> = ({ templateId }) => axios.get(`/invitations/${templateId}`)
