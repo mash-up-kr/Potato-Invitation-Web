@@ -10,5 +10,5 @@
 - [ ] 로컬 테스트 (Staging server) 완료.
 
 ### # Issues
-(연관된 PR 혹은 Task / asset추가 / npm module 추가 / 특정 시점까지 merge대기 등 )
+(연관된 PR 혹은 Task / asset 추가 / npm module 추가 / 특정 시점까지 merge 대기 등 )
 - 이슈 없음.
