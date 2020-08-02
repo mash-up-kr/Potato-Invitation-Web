@@ -60,8 +60,8 @@ function invitationReducer(state: State = initialState, action: Action) {
         invitationAddressName,
         invitationRoadAddress,
         invitationPlaceName,
-        invitationX,
-        invitationY,
+        x,
+        y,
         images,
       } = action.payload
 
@@ -74,8 +74,8 @@ function invitationReducer(state: State = initialState, action: Action) {
           addressName: invitationAddressName,
           roadAddress: invitationRoadAddress,
           placeName: invitationPlaceName,
-          latitude: invitationX,
-          longitude: invitationY,
+          latitude: x,
+          longitude: y,
           images,
         }),
         getInvitationFetching: false,
