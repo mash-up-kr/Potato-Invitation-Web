@@ -16,13 +16,7 @@ const InvitationRecord = Immutable.Record<InvitationAttr>({
   title: '',
   contents: '',
   time: new Date(),
-  kakaoMap: new KakaoMap({
-    addressName: '',
-    roadAddress: '',
-    placeName: '',
-    latitude: 0,
-    longitude: 0,
-  }),
+  kakaoMap: new KakaoMap(),
   images: [],
 })
 
