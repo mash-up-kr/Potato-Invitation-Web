@@ -17,7 +17,8 @@ interface InvitationProps {
 const cx = classNames.bind(styled)
 
 function Invitation({ invitation }: InvitationProps) {
-  const simplePlaceName = invitation.placeName.split(' ')[0]
+  const simplePlaceName = invitation.kakaoMap.placeName.split(' ')[0]
+  const { kakaoMap } = invitation
 
   return (
     <div className={cx('template-wrapper')}>
@@ -71,13 +72,7 @@ function Invitation({ invitation }: InvitationProps) {
               <p>주소</p>
             </div>
             <div className={cx('info-content')}>
-              <KakaoMap
-                placeName={invitation.placeName}
-                addressName={invitation.addressName}
-                roadAddress={invitation.roadAddress}
-                latitude={33.450701}
-                longitude={126.570667}
-              />
+              <KakaoMap kakaoMap={kakaoMap} />
             </div>
           </div>
         </article>
