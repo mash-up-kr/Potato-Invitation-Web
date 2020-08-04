@@ -28,45 +28,47 @@ function Invitation({ title, description, date, time, simpleLocation }: Invitati
       </header>
       <section>
         <article className={cx('template-description')}>
-          <p className={cx('title')}>{title}</p>
+          <Label className={cx('title')}>{title}</Label>
           <p className={cx('description')}>{description}</p>
         </article>
         <article className={cx('template-content')}>
           <div className={cx('content-section')}>
             <div className={cx('info-top-bar')}>
-              <Label content="주요 정보" />
-              <p>주요 정보는 꼭 확인해 주세요!</p>
+              <Label className={cx('info-top-title')}>모임 정보</Label>
+              <p>"마! 엉아다! 집합해라~&#x1F60E;?"</p>
             </div>
             <div className={cx('infos')}>
               <div className={cx('info', 'date-wrapper')}>
                 <div className={cx('info-title')}>
-                  <SVGIcon name="calendar" />
-                  <p>날짜</p>
+                  <div className={cx('icon-wrapper')}>
+                    <SVGIcon name="calendar" />
+                  </div>
+                  <p>모임 날짜</p>
                 </div>
                 <div className={cx('info-content')}>{date}</div>
               </div>
               <div className={cx('info', 'time-wrapper')}>
                 <div className={cx('info-title')}>
-                  <SVGIcon name="time" />
-                  <p>시간</p>
+                  <div className={cx('icon-wrapper')}>
+                    <SVGIcon name="time" />
+                  </div>
+                  <p>모임 시간</p>
                 </div>
                 <div className={cx('info-content')}>{time}</div>
               </div>
               <div className={cx('info', 'location-wrapper')}>
                 <div className={cx('info-title')}>
-                  <SVGIcon name="location" />
-                  <p>장소</p>
+                  <div className={cx('icon-wrapper')}>
+                    <SVGIcon name="location" />
+                  </div>
+                  <p>모임 장소</p>
                 </div>
                 <div className={cx('info-content')}>{simpleLocation}</div>
               </div>
             </div>
           </div>
           <div className={cx('content-section')}>
-            <div className={cx('info-top-bar')}>
-              <Label content="상세 정보" />
-              <p>상세 정보도 보면 좋아요!</p>
-            </div>
-            <div className={cx('info-title')}>
+            <div className={cx('content-info-title')}>
               <SVGIcon name="map" />
               <p>주소</p>
             </div>

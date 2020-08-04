@@ -5,18 +5,15 @@ import React from 'react'
 import * as Styled from './Label.styled'
 
 interface Label {
-  content: string
-  width?: number
-  height?: number
-  fontSize?: number
-  color?: string
-  backgroundColor?: string
+  className?: string
+  children: React.ReactNode
+  underlineColor?: string
 }
 
-function Label({ content, width = 64, height = 20, fontSize = 12, color = '#106225', backgroundColor = '#C9EDD7' }: Label) {
+function Label({ className, children, underlineColor = '#fef051' }: Label) {
   return (
-    <Styled.Label width={width} height={height} fontSize={fontSize} color={color} backgroundColor={backgroundColor}>
-      {content}
+    <Styled.Label data-split="모임 정보" className={className} underlineColor={underlineColor}>
+      {children}
     </Styled.Label>
   )
 }
