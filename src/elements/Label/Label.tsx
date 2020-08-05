@@ -12,7 +12,7 @@ interface Label {
 
 function Label({ className, children, underlineColor = '#fef051' }: Label) {
   return (
-    <Styled.Label data-split="모임 정보" className={className} underlineColor={underlineColor}>
+    <Styled.Label className={className} underlineColor={underlineColor}>
       {children}
     </Styled.Label>
   )
