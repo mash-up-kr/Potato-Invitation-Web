@@ -3,7 +3,7 @@ import React from 'react'
 import classNames from 'classnames/bind'
 
 /* Internal dependencies */
-import Label from 'elements/Label'
+import TextUnderline from 'elements/TextUnderline'
 import KakaoMap from 'elements/KakaoMap'
 import SVGIcon from 'elements/SVGIcon'
 import InvitationModel from 'models/Invitation'
@@ -29,13 +29,13 @@ function Invitation({ invitation }: InvitationProps) {
       </header>
       <section>
         <article className={cx('template-description')}>
-          <Label className={cx('title')}>{invitation.title}</Label>
+          <TextUnderline className={cx('title')}>{invitation.title}</TextUnderline>
           <p className={cx('description')}>{invitation.contents}</p>
         </article>
         <article className={cx('template-content')}>
           <div className={cx('content-section')}>
             <div className={cx('info-top-bar')}>
-              <Label className={cx('info-top-title')}>모임 정보</Label>
+              <TextUnderline className={cx('info-top-title')}>모임 정보</TextUnderline>
               <p>"마! 엉아다! 집합해라~&#x1F60E;?"</p>
             </div>
             <div className={cx('infos')}>
