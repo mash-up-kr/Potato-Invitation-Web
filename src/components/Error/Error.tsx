@@ -1,4 +1,4 @@
-/* Internal dependencies */
+/* External dependencies */
 import React, { useMemo, useCallback } from 'react'
 import { useHistory } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
@@ -6,6 +6,7 @@ import classNames from 'classnames/bind'
 
 /* Internal dependencies */
 import TextUnderline from 'elements/TextUnderline'
+import ErrorCodes from 'types/ErrorCodes'
 import errorAvatar from 'assets/images/error_avatar.png'
 import styles from './Error.module.scss'
 
@@ -15,11 +16,11 @@ interface ErrorProps {
 
 const cx = classNames.bind(styles)
 
-function Error({ errorStatusCode = 404 }: ErrorProps) {
+function Error({ errorStatusCode = ErrorCodes.NOT_FOUND }: ErrorProps) {
   const history = useHistory()
 
   const { errorTitle, errorContent } = useMemo(() => {
-    if (errorStatusCode >= 500) {
+    if (errorStatusCode >= ErrorCodes.INTERNAL_SERVER_ERROR) {
       return {
         errorTitle: 'Internal Server Error',
         errorContent: 'Internal server error',
@@ -27,7 +28,7 @@ function Error({ errorStatusCode = 404 }: ErrorProps) {
     }
     return {
       errorTitle: 'Page Not Found',
-      errorContent: 'Page not found',
+      errorContent: 'Not found',
     }
   }, [errorStatusCode])
 
