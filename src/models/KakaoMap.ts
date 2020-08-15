@@ -4,7 +4,6 @@ import Immutable from 'immutable'
 export interface KakaoMapAttr {
   addressName: string
   roadAddress: string
-  placeName: string
   latitude: number
   longitude: number
 }
@@ -12,11 +11,20 @@ export interface KakaoMapAttr {
 const KakaoMapRecord = Immutable.Record<KakaoMapAttr>({
   addressName: '',
   roadAddress: '',
-  placeName: '',
   latitude: 0,
   longitude: 0,
 })
 
-class KakaoMap extends KakaoMapRecord {}
+class KakaoMap extends KakaoMapRecord {
+  constructor(args: any = {}) {
+    super({
+      ...args,
+      addressName: args.invitationAddressName,
+      roadAddress: args.invitationRoadAddressName,
+      latitude: args.x,
+      longitude: args.y,
+    })
+  }
+}
 
 export default KakaoMap

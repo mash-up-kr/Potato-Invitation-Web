@@ -3,7 +3,6 @@ import { takeLatest } from 'redux-saga/effects'
 
 /* Internal dependencies */
 import Invitation from 'models/Invitation'
-import KakaoMap from 'models/KakaoMap'
 import * as invitationAPI from 'api/invitationAPI'
 import { AsyncActionTypes, actionCreatorWithPromise, createAsyncActionsAndSaga } from 'utils/reduxUtils'
 
@@ -43,6 +42,7 @@ const initialState: State = {
   getInvitationSuccess: false,
   getInvitationError: false,
 }
+console.log(initialState.invitation.toJS())
 
 function invitationReducer(state: State = initialState, action: Action) {
   switch (action.type) {
@@ -54,33 +54,9 @@ function invitationReducer(state: State = initialState, action: Action) {
         getInvitationError: false,
       }
     case GET_INVITATION_SUCCESS:
-      const {
-        invitationTitle,
-        invitationContents,
-        invitationTime,
-        invitationAddressName,
-        invitationRoadAddress,
-        invitationPlaceName,
-        x,
-        y,
-        images,
-      } = action.payload
-
       return {
         ...state,
-        invitation: new Invitation({
-          title: invitationTitle,
-          contents: invitationContents,
-          time: new Date(invitationTime),
-          kakaoMap: new KakaoMap({
-            addressName: invitationAddressName,
-            roadAddress: invitationRoadAddress,
-            placeName: invitationPlaceName,
-            latitude: x,
-            longitude: y,
-          }),
-          images,
-        }),
+        invitation: new Invitation(action.payload),
         getInvitationFetching: false,
         getInvitationSuccess: true,
         getInvitationError: false,
