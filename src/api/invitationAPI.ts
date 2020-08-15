@@ -3,14 +3,20 @@ import axios from 'axios'
 
 /* Internal dependencies */
 import { ResponseType } from 'utils/reduxUtils'
-import KakaoMap from 'models/KakaoMap'
+
+interface ResponseMapType {
+  invitationAddressName: string
+  invitationRoadAddressName: string
+  x: number
+  y: number
+}
 
 export interface getInvitationResponseType {
   invitationTitle: string
   invitationContents: string
   invitationTime: string
   placeName: string
-  map: KakaoMap | null
+  map: ResponseMapType | null
   images: string[]
 }
 
