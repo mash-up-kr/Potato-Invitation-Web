@@ -18,7 +18,6 @@ const KakaoMapRecord = Immutable.Record<KakaoMapAttr>({
 class KakaoMap extends KakaoMapRecord {
   constructor(args: any = {}) {
     super({
-      ...args,
       addressName: args.invitationAddressName,
       roadAddress: args.invitationRoadAddressName,
       latitude: args.x,

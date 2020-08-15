@@ -42,7 +42,6 @@ const initialState: State = {
   getInvitationSuccess: false,
   getInvitationError: false,
 }
-console.log(initialState.invitation.toJS())
 
 function invitationReducer(state: State = initialState, action: Action) {
   switch (action.type) {
