@@ -21,6 +21,7 @@
       padding-top: 30px;
       display: flex;
       justify-content: center;
+      box-sizing: border-box;
 
       img {
         height: 100%;
@@ -30,24 +31,26 @@
   section {
     width: 100%;
     padding: 9px 16px;
+    box-sizing: border-box;
     
     article {
       width: 100%;
       background-color: white;
-      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.08);
       border-radius: 10px;
 
       &.template-description {
         padding: 11px 24px 13px;
         text-align: center;
+        box-sizing: border-box;
 
         .title {
-          font-size: 24px;
+          font-size: 20px;
           font-weight: bold;
         }
         .description {
-          margin-top: 16px;
-          font-size: 16px;
+          margin-top: 8px;
+          font-size: 14px;
           word-break: keep-all;
         }
       }
@@ -55,25 +58,29 @@
         width: 100%;
 
         .content-section {
-          padding: 16px;
+          padding: 12px 16px;
 
           .info-top-bar {
             margin-bottom: 12px;
-            display: flex;
-            align-items: center;
+            text-align: center;
+
+            .info-top-title {
+              font-size: 20px;
+              font-weight: bold;
+            }
 
             p {
-              margin-left: 8px;
-              font-size: 12px;
-              color: #767676;
+              margin-top: 8px;
+              font-size: 14px;
             }
           }
           .infos {
-            padding: 0 16px;
+            width: 100%;
             display: flex;
             justify-content: space-between;
 
             .info {
+              width: 33.33%;
               display: flex;
               flex-direction: column;
               align-items: center;
@@ -81,15 +88,39 @@
           }
           .info-title {
             display: flex;
+            flex-direction: column;
             align-items: center;
 
+            .icon-wrapper {
+              width: 48px;
+              height: 48px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              border: 1px solid #dfdfdf;
+              border-radius: 50%;
+            }
             p {
-              margin-left: 4px;
-              color: #234eb6;
+              margin-top: 4px;
+              font-size: 12px;
+              font-weight: bold;
+              color: #00c853;
             }
           }
           .info-content {
             margin-top: 4px;
+            font-size: 14px;
+          }
+          .content-info-title {
+            display: flex;
+            align-items: center;
+
+            p {
+              margin-left: 4px;
+              font-size: 14px;
+              font-weight: bold;
+              color: #00c853;
+            }
           }
         }
 

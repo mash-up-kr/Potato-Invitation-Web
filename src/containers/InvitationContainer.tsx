@@ -1,25 +1,36 @@
 /* External dependencies */
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useHistory } from 'react-router-dom'
+import _ from 'lodash'
 
 /* Internal dependencies */
 import Invitation from 'components/Invitation'
 import * as invitationAction from 'redux/reducers/invitationReducer'
 import * as invitationSelector from 'redux/selectors/invitationSelector'
 
-function InvitationContainer() {
+interface InvitationContainerProps {
+  templateId: string
+}
+
+function InvitationContainer({ templateId }: InvitationContainerProps) {
   const dispatch = useDispatch()
+  const history = useHistory()
   const invitation = useSelector(invitationSelector.getInvitation)
 
-  return (
-    <Invitation
-      title="모각코하러 모이자!"
-      description="나의모임에 초대된 감자 친구들! 우리는 엄청난 서비스를 만들 수 있을꺼야!"
-      date="11월 27일"
-      time="오후 12시"
-      simpleLocation="잠실 1동"
-    />
-  )
+  useEffect(() => {
+    // eslint-disable-next-line prettier/prettier
+    (async () => {
+      try {
+        await dispatch(invitationAction.getInvitation({ templateId })).promise
+      } catch (error) {
+        const errorStatusCode = _.get(error, ['response', 'status'])
+        history.replace(history.location.pathname, { errorStatusCode })
+      }
+    })()
+  }, [templateId, history, dispatch])
+
+  return <Invitation invitation={invitation} />
 }
 
 export default InvitationContainer

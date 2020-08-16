@@ -3,80 +3,79 @@ import React from 'react'
 import classNames from 'classnames/bind'
 
 /* Internal dependencies */
-import Label from 'elements/Label'
+import TextUnderline from 'elements/TextUnderline'
 import KakaoMap from 'elements/KakaoMap'
 import SVGIcon from 'elements/SVGIcon'
+import InvitationModel from 'models/Invitation'
+import { getDate, getTime } from 'utils/dateUtils'
+import CharacterImg from 'assets/images/character.png'
 import styled from './Invitation.module.scss'
 
 interface InvitationProps {
-  title: string
-  description: string
-  date: string
-  time: string
-  simpleLocation: string
+  invitation: InvitationModel
 }
 
 const cx = classNames.bind(styled)
 
-function Invitation({ title, description, date, time, simpleLocation }: InvitationProps) {
+function Invitation({ invitation }: InvitationProps) {
+  const simplePlaceName = invitation.kakaoMap.placeName.split(' ')[0]
+  const { kakaoMap } = invitation
+
   return (
     <div className={cx('template-wrapper')}>
       <header>
         <div className={cx('character-wrapper')}>
-          <img src="/images/character.png" alt="nothing" />
+          <img src={CharacterImg} alt="" />
         </div>
       </header>
       <section>
         <article className={cx('template-description')}>
-          <p className={cx('title')}>{title}</p>
-          <p className={cx('description')}>{description}</p>
+          <TextUnderline className={cx('title')}>{invitation.title}</TextUnderline>
+          <p className={cx('description')}>{invitation.contents}</p>
         </article>
         <article className={cx('template-content')}>
           <div className={cx('content-section')}>
             <div className={cx('info-top-bar')}>
-              <Label content="주요 정보" />
-              <p>주요 정보는 꼭 확인해 주세요!</p>
+              <TextUnderline className={cx('info-top-title')}>모임 정보</TextUnderline>
+              <p>"마! 엉아다! 집합해라~&#x1F60E;?"</p>
             </div>
             <div className={cx('infos')}>
               <div className={cx('info', 'date-wrapper')}>
                 <div className={cx('info-title')}>
-                  <SVGIcon name="calendar" />
-                  <p>날짜</p>
+                  <div className={cx('icon-wrapper')}>
+                    <SVGIcon name="calendar" />
+                  </div>
+                  <p>모임 날짜</p>
                 </div>
-                <div className={cx('info-content')}>{date}</div>
+                <div className={cx('info-content')}>{getDate(invitation.time)}</div>
               </div>
               <div className={cx('info', 'time-wrapper')}>
                 <div className={cx('info-title')}>
-                  <SVGIcon name="time" />
-                  <p>시간</p>
+                  <div className={cx('icon-wrapper')}>
+                    <SVGIcon name="time" />
+                  </div>
+                  <p>모임 시간</p>
                 </div>
-                <div className={cx('info-content')}>{time}</div>
+                <div className={cx('info-content')}>{getTime(invitation.time)}</div>
               </div>
               <div className={cx('info', 'location-wrapper')}>
                 <div className={cx('info-title')}>
-                  <SVGIcon name="location" />
-                  <p>장소</p>
+                  <div className={cx('icon-wrapper')}>
+                    <SVGIcon name="location" />
+                  </div>
+                  <p>모임 장소</p>
                 </div>
-                <div className={cx('info-content')}>{simpleLocation}</div>
+                <div className={cx('info-content')}>{simplePlaceName}</div>
               </div>
             </div>
           </div>
           <div className={cx('content-section')}>
-            <div className={cx('info-top-bar')}>
-              <Label content="상세 정보" />
-              <p>상세 정보도 보면 좋아요!</p>
-            </div>
-            <div className={cx('info-title')}>
+            <div className={cx('content-info-title')}>
               <SVGIcon name="map" />
               <p>주소</p>
             </div>
             <div className={cx('info-content')}>
-              <KakaoMap
-                generalAddress="잠실1동 코워킹 스페이스"
-                detailAddress="서울특별시 송파구 잠실1동-5 마천로 328 오금현대아파트 43동"
-                latitude={33.450701}
-                longitude={126.570667}
-              />
+              <KakaoMap kakaoMap={kakaoMap} />
             </div>
           </div>
         </article>

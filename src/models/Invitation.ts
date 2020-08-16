@@ -1,27 +1,22 @@
 /* External dependencies */
 import Immutable from 'immutable'
 
+/* Internal dependencies */
+import KakaoMap from 'models/KakaoMap'
+
 export interface InvitationAttr {
-  invitationTitle: string
-  invitationContents: string
-  invitationTime: Date
-  invitationAddressName: string
-  invitationRoadAddress: string
-  invitationPlaceName: string
-  invitationX: number
-  invitationY: number
+  title: string
+  contents: string
+  time: Date
+  kakaoMap: KakaoMap
   images: string[]
 }
 
 const InvitationRecord = Immutable.Record<InvitationAttr>({
-  invitationTitle: '',
-  invitationContents: '',
-  invitationTime: new Date(),
-  invitationAddressName: '',
-  invitationRoadAddress: '',
-  invitationPlaceName: '',
-  invitationX: 0,
-  invitationY: 0,
+  title: '',
+  contents: '',
+  time: new Date(),
+  kakaoMap: new KakaoMap(),
   images: [],
 })
 
