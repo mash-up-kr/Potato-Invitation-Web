@@ -3,14 +3,14 @@ import Immutable from 'immutable'
 import _ from 'lodash'
 
 /* Internal dependencies */
-import KakaoMap from 'models/KakaoMap'
+import Map from 'models/Map'
 
 export interface InvitationAttr {
   title: string
   contents: string
   time: Date
   placeName: string
-  map: KakaoMap | null
+  map: Map | null
   images: string[]
 }
 
@@ -19,7 +19,7 @@ const InvitationRecord = Immutable.Record<InvitationAttr>({
   contents: '',
   time: new Date(),
   placeName: '',
-  map: new KakaoMap(),
+  map: new Map(),
   images: [],
 })
 
@@ -30,7 +30,7 @@ class Invitation extends InvitationRecord {
       title: args.invitationTitle,
       contents: args.invitationContents,
       time: new Date(args.invitationTime),
-      map: _.isNil(args.map) ? args.map : new KakaoMap(args.map),
+      map: _.isNil(args.map) ? args.map : new Map(args.map),
     })
   }
 }

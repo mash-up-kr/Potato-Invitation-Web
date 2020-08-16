@@ -2,31 +2,31 @@
 import React, { useRef, useEffect } from 'react'
 
 /* Internal dependencies */
-import KakaoMapModel from 'models/KakaoMap'
+import MapModel from 'models/Map'
 import KakaoMapService from 'services/KakaoMapService'
-import * as Styled from './KakaoMap.styled'
+import * as Styled from './Map.styled'
 
-interface KakaoMapProps {
-  kakaoMap: KakaoMapModel
+interface MapProps {
+  map: MapModel
   placeName: string
 }
 
-function KakaoMap({ kakaoMap, placeName }: KakaoMapProps) {
+function Map({ map, placeName }: MapProps) {
   const mapContainer = useRef(null)
 
   useEffect(() => {
-    const mapService = new KakaoMapService(mapContainer.current, kakaoMap.latitude, kakaoMap.longitude)
+    const mapService = new KakaoMapService(mapContainer.current, map.latitude, map.longitude)
     mapService.loadMap()
-  }, [kakaoMap])
+  }, [map])
 
   return (
     <Styled.MapWrapper>
       <Styled.AddressWrapper>
         <Styled.PlaceName>{placeName}</Styled.PlaceName>
-        <Styled.AddressName>{kakaoMap.addressName}</Styled.AddressName>
+        <Styled.AddressName>{map.addressName}</Styled.AddressName>
         <Styled.RoadAddress>
           <Styled.AddressTag>도로명</Styled.AddressTag>
-          {kakaoMap.roadAddress}
+          {map.roadAddress}
         </Styled.RoadAddress>
       </Styled.AddressWrapper>
       <Styled.MapContainer ref={mapContainer} />
@@ -34,4 +34,4 @@ function KakaoMap({ kakaoMap, placeName }: KakaoMapProps) {
   )
 }
 
-export default React.memo(KakaoMap)
+export default React.memo(Map)

@@ -5,10 +5,10 @@ import _ from 'lodash'
 
 /* Internal dependencies */
 import TextUnderline from 'elements/TextUnderline'
-import KakaoMap from 'elements/KakaoMap'
+import Map from 'elements/Map'
 import SVGIcon from 'elements/SVGIcon'
 import InvitationModel from 'models/Invitation'
-import KakakoMapModel from 'models/KakaoMap'
+import MapModel from 'models/Map'
 import { getDate, getTime } from 'utils/dateUtils'
 import CharacterImg from 'assets/images/character.png'
 import styled from './Invitation.module.scss'
@@ -30,7 +30,7 @@ function Invitation({ invitation }: InvitationProps) {
           <p>주소</p>
         </div>
         <div className={cx('info-content')}>
-          <KakaoMap kakaoMap={map as KakakoMapModel} placeName={invitation.placeName} />
+          <Map map={map as MapModel} placeName={invitation.placeName} />
         </div>
       </div>
     ),
