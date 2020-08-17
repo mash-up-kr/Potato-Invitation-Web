@@ -1,22 +1,22 @@
 import React from 'react'
 import classNames from 'classnames/bind'
 
-import style from 'components/Landing/Landing.module.scss'
+import style from 'components/Home/Home.module.scss'
 import ImgLogo from 'assets/img_logo.png'
-import ImgMain from 'assets/images/landingImg/img_main.png'
-import ImgLine from 'assets/images/landingImg/img_line.png'
-import ImgInviteIcon from 'assets/images/landingImg/img_inviteicon.png'
-import ImgCharacterChoice from 'assets/images/landingImg/img_characterchoice.png'
-import ImgMakeInvite from 'assets/images/landingImg/img_makeinvite.png'
-import ImgOnlineInvite from 'assets/images/landingImg/img_onlineinvite.png'
-import ImgChat from 'assets/images/landingImg/img_chat.png'
-import ImgReminder from 'assets/images/landingImg/img_reminder.png'
+import ImgMain from 'assets/images/homeImg/img_main.png'
+import ImgLine from 'assets/images/homeImg/img_line.png'
+import ImgInviteIcon from 'assets/images/homeImg/img_inviteicon.png'
+import ImgCharacterChoice from 'assets/images/homeImg/img_characterchoice.png'
+import ImgMakeInvite from 'assets/images/homeImg/img_makeinvite.png'
+import ImgOnlineInvite from 'assets/images/homeImg/img_onlineinvite.png'
+import ImgChat from 'assets/images/homeImg/img_chat.png'
+import ImgReminder from 'assets/images/homeImg/img_reminder.png'
 
 const cx = classNames.bind(style)
 
-function Landing(props) {
+function Home() {
   return (
-    <div className={cx('landing')}>
+    <div className={cx('home')}>
       <header className={cx('hearder-cover')}>
         <div className={cx('header-wrapper')}>
           <img src={ImgLogo} alt="nawa-logo" />
@@ -119,4 +119,4 @@ function Landing(props) {
   )
 }
 
-export default Landing
+export default Home
