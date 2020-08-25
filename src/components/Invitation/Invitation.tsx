@@ -33,7 +33,7 @@ function Invitation({ invitation }: InvitationProps) {
         </div>
         <div className={cx('info-content')}>
           {UserAgentService.isPhone() ? (
-            <a href={`kakaomap://look?p=${latitude},${longitude}`}>
+            <a href={`kakaomap://look?p=${latitude},${longitude}`} target="_blank" rel="noopener noreferrer">
               <Map map={map as MapModel} placeName={invitation.placeName} />
             </a>
           ) : (
