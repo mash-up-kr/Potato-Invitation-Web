@@ -5,9 +5,6 @@ interface WrapperProps {
   isOver: boolean
 }
 
-const WRAPPER_BORDER_WIDTH = '1px'
-const WRAPPER_BORDER_STYLE = 'solid'
-
 export const Wrapper = styled.div<WrapperProps>`
   display: flex;
   justify-content: center;
@@ -16,8 +13,8 @@ export const Wrapper = styled.div<WrapperProps>`
   width: 80px;
   height: 20px;
   box-sizing: border-box;
-  border-width: ${WRAPPER_BORDER_WIDTH};
-  border-style: ${WRAPPER_BORDER_STYLE};
+  border-width: 1px;
+  border-style: solid;
   border-color: white;
 
   ${props =>
