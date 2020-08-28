@@ -8,12 +8,11 @@ import * as Styled from './TextCarousel.styled'
 interface TextCarouselProps {
   className?: string
   duration?: number
+  moveDuration?: number
   content: string
 }
 
-const MOVE_DURATION: number = 100
-
-function TextCarousel({ className, duration = 7000, content }: TextCarouselProps) {
+function TextCarousel({ className, duration = 7000, moveDuration = 100, content }: TextCarouselProps) {
   const [isOver, setIsOver] = useState<boolean>(false)
   const WrapperRef = useRef<HTMLDivElement>(null)
   const ContentRef = useRef<HTMLDivElement>(null)
@@ -24,7 +23,12 @@ function TextCarousel({ className, duration = 7000, content }: TextCarouselProps
 
   useEffect(() => {
     if (duration < 1000) {
-      throw new Error(`Value of the duration set to ${duration}. duration must be equal or bigger than 1000. Please check again`)
+      throw new Error(`Value of the duration set to ${duration}. duration must be equal or bigger than 1000. Please check again.`)
+    }
+    if (moveDuration < 100) {
+      throw new Error(
+        `Value of the moveDuration set to ${moveDuration}. moveDuration must be equal or bigger than 100. Please check again.`,
+      )
     }
 
     WrapperWidth.current = WrapperRef?.current?.clientWidth as number
@@ -32,10 +36,10 @@ function TextCarousel({ className, duration = 7000, content }: TextCarouselProps
 
     if (duration >= 1000 && WrapperWidth.current < ContentWidth.current) {
       LeftPosition.current = WrapperWidth.current
-      MoveToLeftEachInterval.current = (WrapperWidth.current + ContentWidth.current) / (duration / MOVE_DURATION)
+      MoveToLeftEachInterval.current = (WrapperWidth.current + ContentWidth.current) / (duration / moveDuration)
       setIsOver(true)
     }
-  }, [duration])
+  }, [content, duration, moveDuration])
 
   useEffect(() => {
     if (isOver && !_.isNil(ContentRef.current)) {
@@ -43,7 +47,7 @@ function TextCarousel({ className, duration = 7000, content }: TextCarouselProps
         LeftPosition.current -= MoveToLeftEachInterval.current
         // @ts-ignore
         ContentRef.current.style.transform = `translateX(${LeftPosition.current}px)`
-      }, MOVE_DURATION)
+      }, moveDuration)
       const clearLeftPosition = setInterval(() => {
         LeftPosition.current = WrapperWidth.current
       }, duration)
@@ -53,7 +57,7 @@ function TextCarousel({ className, duration = 7000, content }: TextCarouselProps
         clearInterval(clearLeftPosition)
       }
     }
-  }, [isOver, duration])
+  }, [isOver, duration, moveDuration])
 
   return (
     <Styled.Wrapper ref={WrapperRef} className={className} isOver={isOver}>
