@@ -1,6 +1,6 @@
 {
   "name": "nawa-invitation",
-  "version": "0.1.0",
+  "version": "1.1.0",
   "private": true,
   "dependencies": {
     "@commitlint/cli": "9.1.1",
@@ -39,6 +39,8 @@
     "uuid": "8.2.0"
   },
   "devDependencies": {
+    "@commitlint/cli": "9.1.1",
+    "@commitlint/config-conventional": "9.1.1",
     "@testing-library/jest-dom": "5.1.1",
     "@testing-library/react": "10.0.1",
     "@types/classnames": "2.2.10",
@@ -131,5 +133,5 @@
       }
     }
   },
-  "proxy": "http://ec2-13-124-3-1.ap-northeast-2.compute.amazonaws.com:8080"
+  "proxy": "http://ec2-15-165-190-104.ap-northeast-2.compute.amazonaws.com"
 }

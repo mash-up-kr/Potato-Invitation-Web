@@ -10,25 +10,24 @@ import * as invitationAction from 'redux/reducers/invitationReducer'
 import * as invitationSelector from 'redux/selectors/invitationSelector'
 
 interface InvitationContainerProps {
-  templateId: string
+  invitationId: string
 }
 
-function InvitationContainer({ templateId }: InvitationContainerProps) {
+function InvitationContainer({ invitationId }: InvitationContainerProps) {
   const dispatch = useDispatch()
   const history = useHistory()
   const invitation = useSelector(invitationSelector.getInvitation)
 
   useEffect(() => {
-    // eslint-disable-next-line prettier/prettier
-    (async () => {
+    ;(async () => {
       try {
-        await dispatch(invitationAction.getInvitation({ templateId })).promise
+        await dispatch(invitationAction.getInvitation({ invitationId })).promise
       } catch (error) {
         const errorStatusCode = _.get(error, ['response', 'status'])
         history.replace(history.location.pathname, { errorStatusCode })
       }
     })()
-  }, [templateId, history, dispatch])
+  }, [invitationId, history, dispatch])
 
   return <Invitation invitation={invitation} />
 }

@@ -3,9 +3,8 @@ import { takeLatest } from 'redux-saga/effects'
 
 /* Internal dependencies */
 import Invitation from 'models/Invitation'
-import KakaoMap from 'models/KakaoMap'
 import * as invitationAPI from 'api/invitationAPI'
-import { AsyncActionTypes, actionCreatorWithPromise, createAsyncActionsAndSaga } from 'utils/reduxUtils'
+import { AsyncActionTypes, actionCreator, createAsyncActionsAndSaga } from 'utils/reduxUtils'
 
 type Action = AsyncActionTypes<typeof getInvitationAsyncActions>
 
@@ -17,7 +16,7 @@ type State = {
 }
 
 export interface getInvitationPayload {
-  templateId: string
+  invitationId: string
 }
 
 const GET_INVITATION = 'invitation/GET_INVITATION' as const
@@ -25,7 +24,7 @@ const GET_INVITATION_FETCHING = 'invitation/GET_INVITATION_FETCHING' as const
 const GET_INVITATION_SUCCESS = 'invitation/GET_INVITATION_SUCCESS' as const
 const GET_INVITATION_ERROR = 'invitation/GET_INVITATION_ERROR' as const
 
-export const getInvitation = actionCreatorWithPromise<getInvitationPayload>(GET_INVITATION)
+export const getInvitation = actionCreator<getInvitationPayload>(GET_INVITATION, { usePromise: true })
 
 const { asyncActions: getInvitationAsyncActions, asyncSaga: getInvitationSaga } = createAsyncActionsAndSaga(
   GET_INVITATION_FETCHING,
@@ -54,33 +53,9 @@ function invitationReducer(state: State = initialState, action: Action) {
         getInvitationError: false,
       }
     case GET_INVITATION_SUCCESS:
-      const {
-        invitationTitle,
-        invitationContents,
-        invitationTime,
-        invitationAddressName,
-        invitationRoadAddress,
-        invitationPlaceName,
-        x,
-        y,
-        images,
-      } = action.payload
-
       return {
         ...state,
-        invitation: new Invitation({
-          title: invitationTitle,
-          contents: invitationContents,
-          time: new Date(invitationTime),
-          kakaoMap: new KakaoMap({
-            addressName: invitationAddressName,
-            roadAddress: invitationRoadAddress,
-            placeName: invitationPlaceName,
-            latitude: x,
-            longitude: y,
-          }),
-          images,
-        }),
+        invitation: new Invitation(action.payload),
         getInvitationFetching: false,
         getInvitationSuccess: true,
         getInvitationError: false,

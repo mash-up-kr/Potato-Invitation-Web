@@ -5,6 +5,7 @@ export const GlobalStyle = createGlobalStyle`
   body {
     height: 100%;
     width: 100%;
+    min-width: 360px;
   }
 
   #root {
@@ -30,5 +31,10 @@ export const GlobalStyle = createGlobalStyle`
 
   p {
     margin: 0;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
   }
 `
