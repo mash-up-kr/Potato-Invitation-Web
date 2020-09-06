@@ -7,9 +7,11 @@ import _ from 'lodash'
 import TextUnderline from 'elements/TextUnderline'
 import Map from 'elements/Map'
 import SVGIcon from 'elements/SVGIcon'
+import TextCarousel from 'elements/TextCarousel'
 import WithNewline from 'hocs/WithNewline'
 import InvitationModel from 'models/Invitation'
 import MapModel from 'models/Map'
+import UserAgentService from 'services/UserAgentService'
 import { getDate, getTime } from 'utils/dateUtils'
 import styled from './Invitation.module.scss'
 
@@ -21,6 +23,7 @@ const cx = classNames.bind(styled)
 
 function Invitation({ invitation }: InvitationProps) {
   const { map } = invitation
+  const { latitude, longitude } = map as MapModel
 
   const mapSection = useMemo(
     () => (
@@ -30,11 +33,17 @@ function Invitation({ invitation }: InvitationProps) {
           <p>주소</p>
         </div>
         <div className={cx('info-content')}>
-          <Map map={map as MapModel} placeName={invitation.placeName} />
+          {UserAgentService.isPhone() ? (
+            <a href={`kakaomap://look?p=${latitude},${longitude}`} target="_blank" rel="noopener noreferrer">
+              <Map map={map as MapModel} placeName={invitation.placeName} />
+            </a>
+          ) : (
+            <Map map={map as MapModel} placeName={invitation.placeName} />
+          )}
         </div>
       </div>
     ),
-    [invitation.placeName, map],
+    [latitude, longitude, map, invitation.placeName],
   )
 
   return (
@@ -83,7 +92,9 @@ function Invitation({ invitation }: InvitationProps) {
                   </div>
                   <p>모임 장소</p>
                 </div>
-                <div className={cx('info-content')}>{invitation.placeName}</div>
+                <div className={cx('info-content')}>
+                  <TextCarousel content={invitation.placeName} />
+                </div>
               </div>
             </div>
           </div>
