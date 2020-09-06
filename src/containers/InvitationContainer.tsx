@@ -18,9 +18,9 @@ const LOADING_TIME = 3000
 
 function InvitationContainer({ invitationId }: InvitationContainerProps) {
   const [isLoading, setIsLoading] = useState<boolean>(true)
-  const isFetching = useSelector(invitationSelector.getInvitationFetching)
   const dispatch = useDispatch()
   const history = useHistory()
+  const isFetching = useSelector(invitationSelector.getInvitationFetching)
   const invitation = useSelector(invitationSelector.getInvitation)
 
   const loadInvitatoin = () => {
@@ -31,7 +31,7 @@ function InvitationContainer({ invitationId }: InvitationContainerProps) {
 
   const fetchInvitation = useCallback(async () => {
     try {
-      await dispatch(invitationAction.getInvitation({ invitationId }))
+      await dispatch(invitationAction.getInvitation({ invitationId })).promise
     } catch (error) {
       const errorStatusCode = _.get(error, ['response', 'status'])
       history.replace(history.location.pathname, { errorStatusCode })
