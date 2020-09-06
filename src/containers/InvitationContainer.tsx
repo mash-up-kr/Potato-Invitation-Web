@@ -14,10 +14,11 @@ interface InvitationContainerProps {
   invitationId: string
 }
 
+const LOADING_TIME = 3000
+
 function InvitationContainer({ invitationId }: InvitationContainerProps) {
   const [isLoading, setIsLoading] = useState<boolean>(true)
-  const [isFetching, setIsFetching] = useState<boolean>(true)
-  const LOADING_TIME = 3000
+  const isFetching = useSelector(invitationSelector.getInvitationFetching)
   const dispatch = useDispatch()
   const history = useHistory()
   const invitation = useSelector(invitationSelector.getInvitation)
@@ -34,10 +35,8 @@ function InvitationContainer({ invitationId }: InvitationContainerProps) {
     } catch (error) {
       const errorStatusCode = _.get(error, ['response', 'status'])
       history.replace(history.location.pathname, { errorStatusCode })
-    } finally {
-      setIsFetching(false)
     }
-  }, [invitationId, history, dispatch])
+  }, [dispatch, invitationId, history])
 
   useEffect(() => {
     loadInvitatoin()
