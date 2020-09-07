@@ -67,7 +67,7 @@ function Invitation({ invitation }: InvitationProps) {
             <div className={cx('content-section')}>
               <div className={cx('info-top-bar')}>
                 <TextUnderline className={cx('info-top-title')}>모임 정보</TextUnderline>
-                <p>"마! 엉아다! 집합해라~&#x1F60E;?"</p>
+                <p>{invitation.description}</p>
               </div>
               <div className={cx('infos')}>
                 <div className={cx('info', 'date-wrapper')}>
@@ -79,29 +79,40 @@ function Invitation({ invitation }: InvitationProps) {
                   </div>
                   <div className={cx('info-content')}>{getDate(invitation.time)}</div>
                 </div>
-                <div className={cx('info', 'time-wrapper')}>
-                  <div className={cx('info-title')}>
-                    <div className={cx('icon-wrapper')}>
-                      <SVGIcon name="time" />
+                <div className={cx('infos')}>
+                  <div className={cx('info', 'date-wrapper')}>
+                    <div className={cx('info-title')}>
+                      <div className={cx('icon-wrapper')}>
+                        <SVGIcon name="calendar" />
+                      </div>
+                      <p>모임 날짜</p>
                     </div>
-                    <p>모임 시간</p>
+                    <div className={cx('info-content')}>{getDate(invitation.time)}</div>
                   </div>
-                  <div className={cx('info-content')}>{getTime(invitation.time)}</div>
-                </div>
-                <div className={cx('info', 'location-wrapper')}>
-                  <div className={cx('info-title')}>
-                    <div className={cx('icon-wrapper')}>
-                      <SVGIcon name="location" />
+                  <div className={cx('info', 'time-wrapper')}>
+                    <div className={cx('info-title')}>
+                      <div className={cx('icon-wrapper')}>
+                        <SVGIcon name="time" />
+                      </div>
+                      <p>모임 시간</p>
                     </div>
-                    <p>모임 장소</p>
+                    <div className={cx('info-content')}>{getTime(invitation.time)}</div>
                   </div>
-                  <div className={cx('info-content')}>
-                    <TextCarousel content={invitation.placeName} />
+                  <div className={cx('info', 'location-wrapper')}>
+                    <div className={cx('info-title')}>
+                      <div className={cx('icon-wrapper')}>
+                        <SVGIcon name="location" />
+                      </div>
+                      <p>모임 장소</p>
+                    </div>
+                    <div className={cx('info-content')}>
+                      <TextCarousel content={invitation.placeName} />
+                    </div>
                   </div>
                 </div>
               </div>
+              {_.isNil(map) || mapSection}
             </div>
-            {_.isNil(map) || mapSection}
           </article>
         </section>
       </div>
