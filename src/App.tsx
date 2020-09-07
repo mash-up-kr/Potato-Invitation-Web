@@ -12,7 +12,7 @@ import 'app.scss'
 function App() {
   return (
     <BrowserRouter>
-      <Helmet title="나와 초대장" description="나와 초대장입니다." />
+      <Helmet title="나와 초대장" />
       <ErrorHandler>
         <Switch>
           <Route exact path="/" component={HomePage} />

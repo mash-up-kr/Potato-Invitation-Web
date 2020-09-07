@@ -21,7 +21,7 @@ const cx = classNames.bind(style)
 function Home() {
   return (
     <>
-      <Helmet title="나와 초대장" description="나만의 특별한 초대장 파트너" />
+      <Helmet title="나와 초대장" />
       <div className={cx('home')}>
         <header className={cx('hearder-cover')}>
           <div className={cx('header-wrapper')}>

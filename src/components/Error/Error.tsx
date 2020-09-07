@@ -38,7 +38,7 @@ function Error({ errorStatusCode = ErrorCodes.NOT_FOUND }: ErrorProps) {
 
   return (
     <>
-      <Helmet title={`${errorStatusCode} ${errorTitle}`} description={errorContent} />
+      <Helmet title={`${errorStatusCode} ${errorTitle}`} />
       <div className={cx('error-wrapper')}>
         <TextUnderline className={cx('title')}>잠시만요!</TextUnderline>
         <img className={cx('error-avatar')} src={errorAvatar} alt="" />
