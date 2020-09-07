@@ -49,7 +49,7 @@ function Invitation({ invitation }: InvitationProps) {
 
   return (
     <>
-      <Helmet title={`나와 - ${invitation.title}`} description="나와 초대장" />
+      <Helmet title={`나와 - ${invitation.title}`} description={invitation.contents} />
       <div className={cx('template-wrapper')}>
         <header>
           <div className={cx('character-wrapper')}>
