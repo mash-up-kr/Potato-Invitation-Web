@@ -19,8 +19,9 @@ export interface getInvitationResponseType {
   invitationPlaceName: string
   mapInfo: ResponseMapType | null
   templateBackgroundImageUrl: string
+  templateTypeDescription: string
 }
 
 export const getInvitation: ResponseType<getInvitationResponseType> = ({ invitationId }) => {
-  return axios.get(`${getRequestUrl()}/invitations/${invitationId}`)
+  return axios.get(`${getRequestUrl()}/invitations/${invitationId}?ts=${Date.now()}`)
 }

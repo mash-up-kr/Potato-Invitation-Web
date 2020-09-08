@@ -1,9 +1,9 @@
 /* External dependencies */
 import React from 'react'
-import { Helmet } from 'react-helmet-async'
 import { Switch, Route, BrowserRouter } from 'react-router-dom'
 
 /* Internal dependencies */
+import Helmet from 'components/Helmet'
 import { HomePage, ErrorPage, InvitationPage, PreviewPage } from 'pages'
 import ErrorHandler from 'components/ErrorHandler'
 import ScrollToTop from 'components/ScrollToTop'
@@ -13,9 +13,7 @@ import 'app.scss'
 function App() {
   return (
     <BrowserRouter>
-      <Helmet titleTemplate="%s - Nawa Invitation" defaultTitle="Nawa-Invitation">
-        <meta name="description" content="Nawa invitation" />
-      </Helmet>
+      <Helmet title="나와 초대장" />
       <ErrorHandler>
         <ScrollToTop>
           <Switch>
