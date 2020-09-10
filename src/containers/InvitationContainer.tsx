@@ -14,20 +14,24 @@ interface InvitationContainerProps {
   invitationId: string
 }
 
-const LOADING_TIME = 1500
+const LOADING_TIME = 1000
 
 function InvitationContainer({ invitationId }: InvitationContainerProps) {
-  const [isLoading, setIsLoading] = useState<boolean>(true)
   const dispatch = useDispatch()
   const history = useHistory()
+
+  const [isLoading, setIsLoading] = useState<boolean>(true)
+
   const isFetching = useSelector(invitationSelector.getInvitationFetching)
   const invitation = useSelector(invitationSelector.getInvitation)
+  const isShowedAnimation = useSelector(invitationSelector.isShowedAnimation)
 
-  const loadInvitatoin = () => {
+  const loadInvitation = useCallback(() => {
     setTimeout(() => {
       setIsLoading(false)
+      dispatch(invitationAction.setShowAnimation())
     }, LOADING_TIME)
-  }
+  }, [dispatch])
 
   const fetchInvitation = useCallback(async () => {
     try {
@@ -39,11 +43,13 @@ function InvitationContainer({ invitationId }: InvitationContainerProps) {
   }, [dispatch, invitationId, history])
 
   useEffect(() => {
-    loadInvitatoin()
+    if (!isShowedAnimation) {
+      loadInvitation()
+    }
     fetchInvitation()
-  }, [fetchInvitation])
+  }, [isShowedAnimation, loadInvitation, fetchInvitation])
 
-  return isLoading || isFetching ? <LoadingAnimation /> : <Invitation invitation={invitation} />
+  return !isShowedAnimation && (isLoading || isFetching) ? <LoadingAnimation /> : <Invitation invitation={invitation} />
 }
 
 export default InvitationContainer
