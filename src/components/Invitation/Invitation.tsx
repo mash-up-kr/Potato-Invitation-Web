@@ -17,7 +17,6 @@ import UserAgentService from 'services/UserAgentService'
 import { getDate, getTime } from 'utils/dateUtils'
 import styled from './Invitation.module.scss'
 import appDownload from 'assets/images/app-download.png'
-import getMore from 'assets/images/get-more.png'
 
 interface InvitationProps {
   invitation: InvitationModel
@@ -118,12 +117,12 @@ function Invitation({ invitation }: InvitationProps) {
           <div className={cx('footer-buttons')}>
             <div className={cx('footer-button', 'app-download')}>
               <a href="https://danivelop.com">
-                <img src={appDownload} alt="" />
+                <img className={cx('footer-icon')} src={appDownload} alt="" />
               </a>
             </div>
-            <div className={cx('footer-button', 'app-download')}>
+            <div className={cx('footer-button', 'get-more')}>
               <Link to="/">
-                <img src={getMore} alt="" />
+                <SVGIcon className={cx('footer-icon')} name="get-more" />
               </Link>
             </div>
           </div>
