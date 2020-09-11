@@ -6,14 +6,13 @@ import Invitation from 'models/Invitation'
 import * as invitationAPI from 'api/invitationAPI'
 import { AsyncActionTypes, actionCreator, createAsyncActionsAndSaga } from 'utils/reduxUtils'
 
-type Action = AsyncActionTypes<typeof getInvitationAsyncActions> | ReturnType<typeof setShowAnimation>
+type Action = AsyncActionTypes<typeof getInvitationAsyncActions>
 
 type State = {
   invitation: Invitation
   getInvitationFetching: boolean
   getInvitationSuccess: boolean
   getInvitationError: boolean
-  isShowedAnimation: boolean
 }
 
 export interface getInvitationPayload {
@@ -24,10 +23,8 @@ const GET_INVITATION = 'invitation/GET_INVITATION' as const
 const GET_INVITATION_FETCHING = 'invitation/GET_INVITATION_FETCHING' as const
 const GET_INVITATION_SUCCESS = 'invitation/GET_INVITATION_SUCCESS' as const
 const GET_INVITATION_ERROR = 'invitation/GET_INVITATION_ERROR' as const
-const SET_SHOW_ANIMATION = 'invitation/SET_SHOW_ANIMATION' as const
 
 export const getInvitation = actionCreator<getInvitationPayload>(GET_INVITATION, { usePromise: true })
-export const setShowAnimation = actionCreator(SET_SHOW_ANIMATION)
 
 const { asyncActions: getInvitationAsyncActions, asyncSaga: getInvitationSaga } = createAsyncActionsAndSaga(
   GET_INVITATION_FETCHING,
@@ -44,7 +41,6 @@ const initialState: State = {
   getInvitationFetching: false,
   getInvitationSuccess: false,
   getInvitationError: false,
-  isShowedAnimation: false,
 }
 
 function invitationReducer(state: State = initialState, action: Action) {
@@ -70,12 +66,6 @@ function invitationReducer(state: State = initialState, action: Action) {
         getInvitationFetching: false,
         getInvitationSuccess: false,
         getInvitationError: true,
-      }
-
-    case SET_SHOW_ANIMATION:
-      return {
-        ...state,
-        isShowedAnimation: true,
       }
     default:
       return state
