@@ -1,11 +1,13 @@
 /* External dependencies */
-import React from 'react'
+import React, { useCallback } from 'react'
 import classNames from 'classnames/bind'
 
 /* Internal dependencies */
 import SVGIcon, { Size } from 'elements/SVGIcon'
 import Helmet from 'components/Helmet'
-import style from 'components/Home/Home.module.scss'
+import UserAgentService from 'services/UserAgentService'
+import { openBlank } from 'utils/browserUtils'
+import style from './Home.module.scss'
 import ImgLogo from 'assets/img_logo.png'
 import ImgMain from 'assets/images/homeImg/img_main.png'
 import ImgLine from 'assets/images/homeImg/img_line.png'
@@ -19,6 +21,14 @@ import ImgReminder from 'assets/images/homeImg/img_reminder.png'
 const cx = classNames.bind(style)
 
 function Home() {
+  const handleClickAppDownload = useCallback(() => {
+    if (UserAgentService.isAndroidDevice()) {
+      openBlank('https://play.google.com/store/apps/details?id=com.mashup.patatoinvitation')
+    } else {
+      alert('안드로이드 기기만 다운로드 가능합니다.')
+    }
+  }, [])
+
   return (
     <>
       <Helmet title="나와 초대장" />
@@ -28,7 +38,9 @@ function Home() {
             <img src={ImgLogo} alt="nawa-logo" />
             <p className={cx('header-title')}>나만의 특별한 초대장 파트너</p>
             <img src={ImgMain} alt="img-main" />
-            <button className={cx('app-download-button')}>앱 다운로드</button>
+            <button className={cx('app-download-button')} onClick={handleClickAppDownload}>
+              앱 다운로드
+            </button>
           </div>
         </header>
         <section>
