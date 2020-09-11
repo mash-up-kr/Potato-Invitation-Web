@@ -29,6 +29,8 @@ function Invitation({ invitation }: InvitationProps) {
   const { map } = invitation
 
   const mapSection = useMemo(() => {
+    if (_.isNil(map)) return null
+
     const { latitude, longitude } = map as MapModel
 
     return (
@@ -104,7 +106,7 @@ function Invitation({ invitation }: InvitationProps) {
                 </div>
               </div>
             </div>
-            {_.isNil(map) || mapSection}
+            {mapSection}
           </article>
         </section>
         <footer>
