@@ -27,10 +27,11 @@ const cx = classNames.bind(styled)
 
 function Invitation({ invitation }: InvitationProps) {
   const { map } = invitation
-  const { latitude, longitude } = map as MapModel
 
-  const mapSection = useMemo(
-    () => (
+  const mapSection = useMemo(() => {
+    const { latitude, longitude } = map as MapModel
+
+    return (
       <div className={cx('content-section')}>
         <div className={cx('content-info-title')}>
           <SVGIcon name="map" />
@@ -46,9 +47,8 @@ function Invitation({ invitation }: InvitationProps) {
           )}
         </div>
       </div>
-    ),
-    [latitude, longitude, map, invitation.placeName],
-  )
+    )
+  }, [map, invitation.placeName])
 
   return (
     <>
