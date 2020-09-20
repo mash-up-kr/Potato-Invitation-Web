@@ -15,7 +15,7 @@ interface InvitationContainerProps {
   invitationId: string
 }
 
-const LOADING_TIME = 1000
+const LOADING_TIME = 1300
 
 function InvitationContainer({ invitationId }: InvitationContainerProps) {
   const dispatch = useDispatch()
@@ -25,7 +25,7 @@ function InvitationContainer({ invitationId }: InvitationContainerProps) {
   const isSuccess = useSelector(invitationSelector.getInvitationSuccess)
   const invitation = useSelector(invitationSelector.getInvitation)
 
-  const [isLoading, setIsLoading] = useState<boolean>(!isSuccess)
+  const [isLoading, setIsLoading] = useState<boolean>(true)
 
   usePreloader(() => dispatch(invitationAction.getInvitation({ invitationId })))
 
@@ -45,8 +45,9 @@ function InvitationContainer({ invitationId }: InvitationContainerProps) {
   }, [dispatch, invitationId, history])
 
   useEffect(() => {
+    loadInvitation()
+
     if (!isSuccess) {
-      loadInvitation()
       fetchInvitation()
     }
   }, [isSuccess, loadInvitation, fetchInvitation])
