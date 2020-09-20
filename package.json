@@ -4,6 +4,10 @@
   "private": true,
   "dependencies": {
     "@babel/core": "7.9.0",
+    "@loadable/babel-plugin": "5.13.2",
+    "@loadable/component": "5.13.2",
+    "@loadable/server": "5.13.2",
+    "@loadable/webpack-plugin": "5.13.0",
     "@svgr/webpack": "4.3.3",
     "@typescript-eslint/eslint-plugin": "^2.10.0",
     "@typescript-eslint/parser": "^2.10.0",
@@ -18,6 +22,7 @@
     "classnames": "2.2.6",
     "cross-env": "7.0.2",
     "css-loader": "3.4.2",
+    "domino": "2.1.6",
     "dotenv": "8.2.0",
     "dotenv-expand": "5.1.0",
     "eslint": "^6.6.0",
@@ -28,6 +33,7 @@
     "eslint-plugin-jsx-a11y": "6.2.3",
     "eslint-plugin-react": "7.19.0",
     "eslint-plugin-react-hooks": "^1.6.1",
+    "express": "4.17.1",
     "file-loader": "4.3.0",
     "fontfaceobserver": "2.1.0",
     "fs-extra": "^8.1.0",
@@ -117,11 +123,14 @@
     "stylelint": "13.2.1",
     "stylelint-config-recommended": "3.0.0",
     "stylelint-config-styled-components": "0.1.1",
-    "stylelint-processor-styled-components": "1.10.0"
+    "stylelint-processor-styled-components": "1.10.0",
+    "webpack-node-externals": "2.5.2"
   },
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
+    "start:server": "node dist/server.js",
+    "build:server": "node scripts/build.server.js",
     "test": "node scripts/test.js",
     "test:generators": "ts-node --project=./internals/ts-node.tsconfig.json ./internals/testing/test-generators.ts",
     "start:prod": "npm run build && serve -s build",
@@ -231,6 +240,9 @@
   "babel": {
     "presets": [
       "react-app"
+    ],
+    "plugins": [
+      "@loadable/babel-plugin"
     ]
   },
   "eslintConfig": {

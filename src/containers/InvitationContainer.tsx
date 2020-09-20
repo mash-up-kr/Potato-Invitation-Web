@@ -7,8 +7,9 @@ import _ from 'lodash'
 /* Internal dependencies */
 import LoadingAnimation from 'components/LoadingAnimation'
 import Invitation from 'components/Invitation'
-import * as invitationAction from 'redux/reducers/invitationReducer'
-import * as invitationSelector from 'redux/selectors/invitationSelector'
+import * as invitationAction from 'modules/reducers/invitationReducer'
+import * as invitationSelector from 'modules/selectors/invitationSelector'
+import { usePreloader } from 'utils/preloadUtils'
 
 interface InvitationContainerProps {
   invitationId: string
@@ -25,6 +26,8 @@ function InvitationContainer({ invitationId }: InvitationContainerProps) {
   const invitation = useSelector(invitationSelector.getInvitation)
 
   const [isLoading, setIsLoading] = useState<boolean>(!isSuccess)
+
+  usePreloader(() => dispatch(invitationAction.getInvitation({ invitationId })))
 
   const loadInvitation = useCallback(() => {
     setTimeout(() => {
