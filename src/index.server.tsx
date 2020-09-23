@@ -104,6 +104,8 @@ function createPage(root, tags) {
 
 const app = express()
 
+const port = 3000
+
 const serverRender = async (req, res) => {
   const context = {}
   const sagaMiddleware = createSagaMiddleware()
@@ -174,6 +176,4 @@ app.use(
 )
 app.use(serverRender)
 
-http.createServer(app).listen(5000, () => {
-  console.log('Running on http://localhost:5000')
-})
+http.createServer(app).listen(port)
