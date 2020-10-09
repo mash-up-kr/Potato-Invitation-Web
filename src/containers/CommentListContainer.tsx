@@ -46,7 +46,15 @@ function CommentListContainer({ invitationId }: CommentListContainerProps) {
     fetchComments()
   }, [fetchComments])
 
-  return <CommentList comments={comments} mainImage={mainImage} contents={contents} createComment={createComment} />
+  return (
+    <CommentList
+      invitationId={invitationId}
+      comments={comments}
+      mainImage={mainImage}
+      contents={contents}
+      createComment={createComment}
+    />
+  )
 }
 
 export default CommentListContainer

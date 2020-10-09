@@ -2,6 +2,7 @@
 import React, { useState } from 'react'
 import Immutable from 'immutable'
 import classNames from 'classnames/bind'
+import { Link } from 'react-router-dom'
 
 /* Internal dependencies */
 import Comment from 'components/Comment'
@@ -11,6 +12,7 @@ import TextUnderline from 'elements/TextUnderline'
 import WithNewline from 'hocs/WithNewline'
 
 interface commentListProps {
+  invitationId: string
   comments: Immutable.List<CommentModel>
   mainImage: string
   contents: string
@@ -19,7 +21,7 @@ interface commentListProps {
 
 const cx = classNames.bind(styles)
 
-function CommentList({ comments, mainImage, contents, createComment }: commentListProps) {
+function CommentList({ invitationId, comments, mainImage, contents, createComment }: commentListProps) {
   const [form, setForm] = useState({
     userName: '',
     content: '',
@@ -74,6 +76,7 @@ function CommentList({ comments, mainImage, contents, createComment }: commentLi
           <button type="submit">댓글 입력하기</button>
         </form>
       </div>
+      <Link to={`/${invitationId}`} className={cx('go-invitation-button')} />
     </div>
   )
 }

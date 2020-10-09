@@ -114,4 +114,13 @@
       line-height: 14px;
     }
   }
+
+  .go-invitation-button {
+    width: 24px;
+    height: 24px;
+    position: fixed;
+    top: 8px;
+    right: 8px;
+    background-image: url('../../assets/icons/close.svg');
+  }
 }
