@@ -43,6 +43,9 @@ function CommentList({ invitationId, comments, mainImage, contents, createCommen
 
   const onSubmit = e => {
     e.preventDefault()
+    if (!form.userName || !form.content) {
+      return
+    }
     createComment(form)
     initForm()
   }
