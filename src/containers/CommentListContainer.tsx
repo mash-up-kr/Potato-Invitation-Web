@@ -34,6 +34,7 @@ function CommentListContainer({ invitationId }: CommentListContainerProps) {
       try {
         const { userName, content } = form
         await dispatch(commentAction.createComment({ invitationId, userName, content })).promise
+        await dispatch(commentAction.getComments({ invitationId })).promise
       } catch (error) {
         console.log(error)
       }
