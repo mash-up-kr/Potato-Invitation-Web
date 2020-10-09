@@ -190,4 +190,20 @@
       }
     }
   }
+
+  .go-comment-button {
+    width: 100%;
+    height: 60px;
+    background-color: #fef051;
+    font-size: 18px;
+    color: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 0;
+    font-weight: bold;
+    position: fixed;
+    bottom: 0;
+    z-index: 100;
+  }
 }
