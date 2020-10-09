@@ -5,7 +5,7 @@ import classNames from 'classnames/bind'
 /* Internal dependencies */
 import CommentModel from 'models/Comment'
 import styles from './Comment.module.scss'
-import { getDate, getTime } from 'utils/dateUtils'
+import { getYear, getDate, getTime } from 'utils/dateUtils'
 
 interface CommentProps {
   comment: CommentModel
@@ -16,7 +16,7 @@ const cx = classNames.bind(styles)
 function Comment({ comment }: CommentProps) {
   const getCreateAt = useCallback(() => {
     const createAt = new Date(comment.get('createdAt'))
-    return `${getDate(createAt)} ${getTime(createAt)}`
+    return `${getYear(createAt)} ${getDate(createAt)} ${getTime(createAt)}`
   }, [comment])
 
   return (
