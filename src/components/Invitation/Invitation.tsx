@@ -41,7 +41,7 @@ function Invitation({ invitation, invitationId }: InvitationProps) {
     const { latitude, longitude } = map as MapModel
 
     return (
-      <div className={cx('content-section')}>
+      <div className={cx('content-section', 'map-section')}>
         <div className={cx('content-info-title')}>
           <SVGIcon name="map" />
           <p>주소</p>
@@ -58,6 +58,28 @@ function Invitation({ invitation, invitationId }: InvitationProps) {
       </div>
     )
   }, [map, invitation.placeName])
+
+  const imageSection = useMemo(() => {
+    if (_.isEmpty(invitation.images)) {
+      return null
+    }
+
+    return (
+      <div className={cx('content-section')}>
+        <div className={cx('content-info-title')}>
+          <SVGIcon name="image" />
+          <p>이미지</p>
+        </div>
+        <div className={cx('info-content')}>
+          {invitation.images.map(({ id, url }) => (
+            <div key={id} className={cx('image')}>
+              <img src={url} alt="" />
+            </div>
+          ))}
+        </div>
+      </div>
+    )
+  }, [invitation.images])
 
   return (
     <div className={cx('template-wrapper')}>
@@ -112,6 +134,7 @@ function Invitation({ invitation, invitationId }: InvitationProps) {
             </div>
           </div>
           {mapSection}
+          {imageSection}
         </article>
       </section>
       <footer>
