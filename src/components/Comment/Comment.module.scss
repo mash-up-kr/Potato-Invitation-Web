@@ -21,9 +21,10 @@
             line-height: 6px;
             font-weight: bold;
             margin: 0;
-            display: flex;
-            justify-self: center;
-            align-items: center;
+            display: inline-block;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
         }
 
         .created-at {
@@ -32,10 +33,9 @@
             color: #7e7e7e;
             line-height: 10px;
             margin: 0;
-            display: flex;
-            justify-self: center;
-            align-items: center;
+            display: inline-block;
             margin-left: 8px;
+            white-space: nowrap;
         }
     }
 
