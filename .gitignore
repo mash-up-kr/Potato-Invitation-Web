@@ -1,6 +1,7 @@
 # Don't check auto-generated stuff into git
 coverage
 build
+dist
 node_modules
 stats.json
 .pnp
@@ -20,6 +21,3 @@ yarn-error.log*
 generated-cra-app
 .cra-template-rb
 template
-yarn.lock
-package-lock.json
-
