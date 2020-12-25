@@ -11,6 +11,7 @@ import styles from './CommentList.module.scss'
 import TextUnderline from 'elements/TextUnderline'
 import WithNewline from 'hocs/WithNewline'
 import NoComment from 'assets/images/no_comment.png'
+import Modal from 'elements/Modal/Modal'
 
 interface commentListProps {
   invitationId: string
@@ -28,6 +29,8 @@ function CommentList({ invitationId, comments, mainImage, contents, createCommen
     content: '',
   })
 
+  const [showModal, setShowModal] = useState(false)
+
   const initForm = () => {
     setForm({
       userName: '',
@@ -42,11 +45,20 @@ function CommentList({ invitationId, comments, mainImage, contents, createCommen
     })
   }
 
+  const onOpenModal = () => {
+    setShowModal(true)
+  }
+
+  const onCloseModal = () => {
+    setShowModal(false)
+  }
+
   const onSubmit = e => {
     e.preventDefault()
     if (!form.userName || !form.content) {
       return
     }
+    onCloseModal()
     createComment(form)
     initForm()
   }
@@ -80,11 +92,19 @@ function CommentList({ invitationId, comments, mainImage, contents, createCommen
           )}
         </article>
       </section>
-      <div className={cx('new-comment')} onSubmit={onSubmit}>
+      <div className={cx('new-comment')}>
         <form>
           <input type="text" name="userName" value={form.userName} placeholder="이름을 입력해주세요" onChange={onChage} />
           <input type="text" name="content" value={form.content} placeholder="댓글을 입력해주세요" onChange={onChage} />
-          <button type="submit">댓글 입력하기</button>
+          <button type="button" onClick={onOpenModal}>
+            댓글 입력하기
+          </button>
+          <Modal className={cx('check-comment-modal')} visible={showModal} onClose={onCloseModal} onSubmit={onSubmit}>
+            <TextUnderline className={cx('title')}>잠시만요!</TextUnderline>
+            <p className={cx('description')}>댓글은 작성 후</p>
+            <p className={cx('description')}>수정, 삭제할 수 없어요.</p>
+            <p className={cx('description')}>입력 내용은 확인하셨나요?</p>
+          </Modal>
         </form>
       </div>
       <Link to={`/${invitationId}`} className={cx('go-invitation-button')} />
