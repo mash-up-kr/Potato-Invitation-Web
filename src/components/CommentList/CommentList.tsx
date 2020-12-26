@@ -99,12 +99,14 @@ function CommentList({ invitationId, comments, mainImage, contents, createCommen
           <button type="button" onClick={onOpenModal}>
             댓글 입력하기
           </button>
-          <Modal className={cx('check-comment-modal')} visible={showModal} onClose={onCloseModal} onSubmit={onSubmit}>
-            <TextUnderline className={cx('title')}>잠시만요!</TextUnderline>
-            <p className={cx('description')}>댓글은 작성 후</p>
-            <p className={cx('description')}>수정, 삭제할 수 없어요.</p>
-            <p className={cx('description')}>입력 내용은 확인하셨나요?</p>
-          </Modal>
+          {showModal && (
+            <Modal className={cx('check-comment-modal')} onClose={onCloseModal} onSubmit={onSubmit}>
+              <TextUnderline className={cx('title')}>잠시만요!</TextUnderline>
+              <p className={cx('description')}>댓글은 작성 후</p>
+              <p className={cx('description')}>수정, 삭제할 수 없어요.</p>
+              <p className={cx('description')}>입력 내용은 확인하셨나요?</p>
+            </Modal>
+          )}
         </form>
       </div>
       <Link to={`/${invitationId}`} className={cx('go-invitation-button')} />

@@ -1,12 +1,17 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import * as Styled from './Modal.styled'
 
-function Modal({ className, visible, onClose, onSubmit, children }) {
+function Modal({ className, onClose, onSubmit, children }) {
+  useEffect(() => {
+    document.body.style = `overflow: hidden;`
+    return () => {
+      document.body.style = `overflow: auto;`
+    }
+  }, [])
   return (
     <>
-      <Styled.ModalOverlay visible={visible} />
-      <Styled.ModalWrapper className={className} tabIndex="-1" visible={visible}>
-        <Styled.ModalInner tabIndex="0" className="modal-inner">
+      <Styled.ModalWrapper className={className} tabIndex="-1">
+        <Styled.ModalInner tabIndex="0">
           <Styled.ContentWrapper>{children}</Styled.ContentWrapper>
           <Styled.ButtonWrapper>
             <Styled.CloseButton type="button" onClick={onClose}>
