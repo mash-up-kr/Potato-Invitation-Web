@@ -1,5 +1,5 @@
 /* External dependencies */
-import React, { useState } from 'react'
+import React, { useState, useCallback } from 'react'
 import Immutable from 'immutable'
 import classNames from 'classnames/bind'
 import { Link } from 'react-router-dom'
@@ -31,49 +31,58 @@ function CommentList({ invitationId, comments, mainImage, contents, createCommen
 
   const [showModal, setShowModal] = useState(false)
 
-  const initForm = () => {
+  const initForm = useCallback(() => {
     setForm({
       userName: '',
       content: '',
     })
-  }
+  }, [])
 
-  const onChage = e => {
-    setForm({
-      ...form,
-      [e.target.name]: e.target.value,
-    })
-  }
+  const onChage = useCallback(
+    e => {
+      setForm({
+        ...form,
+        [e.target.name]: e.target.value,
+      })
+    },
+    [form],
+  )
 
-  const onOpenModal = () => {
+  const onSubmit = useCallback(
+    e => {
+      e.preventDefault()
+      if (!form.userName || !form.content) {
+        return
+      }
+      createComment(form)
+      initForm()
+    },
+    [createComment, form, initForm],
+  )
+
+  const onOpenModal = useCallback(() => {
     setShowModal(true)
-  }
+  }, [])
 
-  const onCloseModal = () => {
+  const onCloseModal = useCallback(() => {
     setShowModal(false)
-  }
+  }, [])
 
-  const onCheck = () => {
+  const onCheck = useCallback(() => {
     onOpenModal()
-  }
+  }, [onOpenModal])
 
-  const onCancel = () => {
+  const onCancel = useCallback(() => {
     onCloseModal()
-  }
+  }, [onCloseModal])
 
-  const onConfirm = e => {
-    onCloseModal()
-    onSubmit(e)
-  }
-
-  const onSubmit = e => {
-    e.preventDefault()
-    if (!form.userName || !form.content) {
-      return
-    }
-    createComment(form)
-    initForm()
-  }
+  const onConfirm = useCallback(
+    e => {
+      onCloseModal()
+      onSubmit(e)
+    },
+    [onCloseModal, onSubmit],
+  )
 
   return (
     <div className={cx('comment-list-wrapper')}>
