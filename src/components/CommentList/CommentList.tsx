@@ -53,12 +53,24 @@ function CommentList({ invitationId, comments, mainImage, contents, createCommen
     setShowModal(false)
   }
 
+  const onCheck = () => {
+    onOpenModal()
+  }
+
+  const onCancel = () => {
+    onCloseModal()
+  }
+
+  const onConfirm = e => {
+    onCloseModal()
+    onSubmit(e)
+  }
+
   const onSubmit = e => {
     e.preventDefault()
     if (!form.userName || !form.content) {
       return
     }
-    onCloseModal()
     createComment(form)
     initForm()
   }
@@ -96,17 +108,15 @@ function CommentList({ invitationId, comments, mainImage, contents, createCommen
         <form>
           <input type="text" name="userName" value={form.userName} placeholder="이름을 입력해주세요" onChange={onChage} />
           <input type="text" name="content" value={form.content} placeholder="댓글을 입력해주세요" onChange={onChage} />
-          <button type="button" onClick={onOpenModal}>
+          <button type="button" onClick={onCheck}>
             댓글 입력하기
           </button>
-          {showModal && (
-            <Modal className={cx('check-comment-modal')} onClose={onCloseModal} onSubmit={onSubmit}>
-              <TextUnderline className={cx('title')}>잠시만요!</TextUnderline>
-              <p className={cx('description')}>댓글은 작성 후</p>
-              <p className={cx('description')}>수정, 삭제할 수 없어요.</p>
-              <p className={cx('description')}>입력 내용은 확인하셨나요?</p>
-            </Modal>
-          )}
+          <Modal className={cx('check-comment-modal')} show={showModal} onCancel={onCancel} onConfirm={onConfirm}>
+            <TextUnderline className={cx('title')}>잠시만요!</TextUnderline>
+            <p className={cx('description')}>댓글은 작성 후</p>
+            <p className={cx('description')}>수정, 삭제할 수 없어요.</p>
+            <p className={cx('description')}>입력 내용은 확인하셨나요?</p>
+          </Modal>
         </form>
       </div>
       <Link to={`/${invitationId}`} className={cx('go-invitation-button')} />
